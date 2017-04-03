@@ -13,7 +13,7 @@ def get_date():
 	"""
 	now = datetime.datetime.now()
 	year_months = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"]
-	sentence = "Year is "+str(now.year)+", were are the "+str(now.day)+" of "+year_months[now.month-1]+" and it is "+str(now.hour)+" and "+str(now.minute)+", "+str(now.second)+"seconds"
+	sentence = "Year is "+str(now.year)+", were are the "+str(now.day)+" of "+year_months[now.month-1]+" and it is "+str(now.hour)+" and "+str(now.minute)+" minutes "+str(now.second)+"seconds"
 
 	engine = pyttsx.init()
 	engine.say(sentence)
