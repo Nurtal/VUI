@@ -6,7 +6,7 @@ import time
 
 #
 # Have to install pypiwin 32 on windows 
-#
+# Require linux poppler-utils to read pdf
 # => Some ideas:
 #	- read publication
 #	- read emails
