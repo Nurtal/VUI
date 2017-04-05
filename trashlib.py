@@ -53,6 +53,23 @@ def check_process():
 	engine.runAndWait()
 
 
+def read_file(file_name):
+	"""
+	-> read content of file 
+	"""
+
+	engine = pyttsx.init()
+	input_file = open(file_name, "r")
+	for line in input_file:
+		line = line.split("\n")
+		line = line[0]
+
+		engine.say(line)
+		
+	input_file.close()
+	engine.runAndWait()
+
+
 # TEST SPACE
 
 #for x in range(1,11):
@@ -62,8 +79,10 @@ def check_process():
 #engine.say("and rabbits")
 #engine.runAndWait()
 
-presentation()
-get_date()
-check_process()
+#presentation()
+#get_date()
+#check_process()
+#read_file("data.txt")
+
 
 
