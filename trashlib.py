@@ -1,9 +1,15 @@
 import pyttsx
 import datetime
 import psutil
+import os
+import time
 
 #
 # Have to install pypiwin 32 on windows 
+# Require linux poppler-utils to read pdf
+# => Some ideas:
+#	- read publication
+#	- read emails
 #
 
 
@@ -70,6 +76,41 @@ def read_file(file_name):
 	engine.runAndWait()
 
 
+def read_pdf(article):
+	"""
+	-> require linux poppler-utils
+	"""
+
+	# Convert pdf to Text
+	os.system("pdftotext "+str(article)+" reading_stuff.txt")
+
+	# Reformat text
+	# -> one line = one sentence
+	read_file = open("reading_stuff.txt", "r")
+	text_in_string = ""
+	for line in read_file:
+		text_in_string += line
+	read_file.close()
+
+	text_in_paragraph = text_in_string.split("\n\n")
+	text_in_string = ""
+	
+	engine = pyttsx.init()
+	for paragraph in text_in_paragraph:
+		paragraph = paragraph.replace("\n", " ")
+		illegal_char = []
+		authorized_char = [" ", ",", "(", ")", "\n", "-", "+", "."]
+		for character in paragraph:
+			if(not character.isalpha() and not character.isdigit() and character not in authorized_char):
+				illegal_char.append(character)
+		for character in illegal_char:
+			paragraph = paragraph.replace(character, " ")
+		engine.say(paragraph)
+	engine.runAndWait()
+	
+
+
+
 # TEST SPACE
 
 #for x in range(1,11):
@@ -85,4 +126,5 @@ def read_file(file_name):
 #read_file("data.txt")
 
 
+read_pdf("TCells.pdf")
 
